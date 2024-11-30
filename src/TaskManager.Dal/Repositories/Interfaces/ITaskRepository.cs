@@ -1,6 +1,5 @@
 using TaskManager.Dal.Entities;
 using TaskManager.Dal.Models;
-using TaskManager.Dal.Models;
 
 namespace TaskManager.Dal.Repositories.Interfaces;
 
