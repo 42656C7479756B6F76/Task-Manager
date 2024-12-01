@@ -1,10 +1,14 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using TaskManager.Dal.Extensions;
 
-builder.Services.AddControllers();
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenLocalhost(5213, o => o.Protocols = HttpProtocols.Http2);
+});
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
+app.MigrateUp();
+
 app.Run();
